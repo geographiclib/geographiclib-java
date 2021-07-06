@@ -19,7 +19,7 @@ public class Inverse {
         lat1 = in.nextDouble(); lon1 = in.nextDouble();
         lat2 = in.nextDouble(); lon2 = in.nextDouble();
         GeodesicData g = Geodesic.WGS84.Inverse(lat1, lon1, lat2, lon2);
-        System.out.println(g.azi1 + " " + g.azi2 + " " + g.s12);
+        System.out.format("%.11f %.11f %.6f%n", g.azi1, g.azi2, g.s12);
       }
     }
     catch (Exception e) {}

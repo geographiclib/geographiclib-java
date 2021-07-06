@@ -19,7 +19,7 @@ public class Direct {
         lat1 = in.nextDouble(); lon1 = in.nextDouble();
         azi1 = in.nextDouble(); s12 = in.nextDouble();
         GeodesicData g = Geodesic.WGS84.Direct(lat1, lon1, azi1, s12);
-        System.out.println(g.lat2 + " " + g.lon2 + " " + g.azi2);
+        System.out.format("%.11f %.11f %.11f%n", g.lat2, g.lon2, g.azi2);
       }
     }
     catch (Exception e) {}

@@ -23,6 +23,6 @@ public class Planimeter {
     }
     catch (Exception e) {}
     PolygonResult r = p.Compute();
-    System.out.println(r.num + " " + r.perimeter + " " + r.area);
+    System.out.format("%d %.6f %.2f%n", r.num, r.perimeter, r.area);
   }
 }
