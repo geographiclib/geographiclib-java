@@ -667,6 +667,16 @@ public class GeodesicTest {
   }
 
   @Test
+  public void GeodSolve94() {
+    // Check fix for lat2 = nan being treated as lat2 = 0 (bug found
+    // 2021-07-26)
+    GeodesicData inv = Geodesic.WGS84.Inverse(0, 0, Double.NaN, 90);
+    assertTrue(isNaN(inv.azi1));
+    assertTrue(isNaN(inv.azi2));
+    assertTrue(isNaN(inv.s12));
+  }
+
+  @Test
   public void Planimeter0() {
     // Check fix for pole-encircling bug found 2011-03-16
     double pa[][] = {{89, 0}, {89, 90}, {89, 180}, {89, 270}};

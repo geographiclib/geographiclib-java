@@ -659,7 +659,7 @@ public class Geodesic {
 
     // Swap points so that point with higher (abs) latitude is point 1
     // If one latitude is a nan, then it becomes lat1.
-    int swapp = Math.abs(lat1) < Math.abs(lat2) ? -1 : 1;
+    int swapp = Math.abs(lat1) < Math.abs(lat2) || lat2 != lat2 ? -1 : 1;
     if (swapp < 0) {
       lonsign *= -1;
       { double t = lat1; lat1 = lat2; lat2 = t; }
