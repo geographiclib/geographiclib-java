@@ -1,7 +1,7 @@
 /**
  * <h2>Geodesic routines from GeographicLib implemented in Java</h2>
  * @author Charles F. F. Karney (charles@karney.com)
- * @version 1.52
+ * @version 2.0-SNAPSHOT
  *
  * <p>
  * The documentation for other versions is available at
@@ -29,15 +29,15 @@
  * GeographicLib-Java is part of GeographicLib which available for download at
  * <ul>
  * <li>
- *   <a href="https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-1.52.tar.gz">
- *   GeographicLib-1.52.tar.gz</a>
+ *   <a href="https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-2.0-SNAPSHOT.tar.gz">
+ *   GeographicLib-2.0-SNAPSHOT.tar.gz</a>
  * <li>
- *   <a href="https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-1.52.zip">
- *   GeographicLib-1.52.zip</a>
+ *   <a href="https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-2.0-SNAPSHOT.zip">
+ *   GeographicLib-2.0-SNAPSHOT.zip</a>
  * </ul>
  * <p>
  * as either a compressed tar file (tar.gz) or a zip file.  After unpacking
- * the source, the Java library can be found in GeographicLib-1.52/java.  (This
+ * the source, the Java library can be found in GeographicLib-2.0-SNAPSHOT/java.  (This
  * library is completely independent from the rest of GeodegraphicLib.)  The
  * library consists of the files in the src/main/java/net/sf/geographiclib
  * subdirectory.
@@ -50,7 +50,7 @@
  *   <dependency>
  *     <groupId>net.sf.geographiclib</groupId>
  *     <artifactId>GeographicLib-Java</artifactId>
- *     <version>1.52</version>
+ *     <version>2.0-SNAPSHOT</version>
  *   </dependency> }</pre>
  * in your {@code pom.xml}.
  *
@@ -119,9 +119,9 @@
  * some additional packages to your local repository.)  Then compile and run
  * Inverse.java with <pre>
  * cd inverse/src/main/java
- * javac -cp .:../../../../target/GeographicLib-Java-1.52.jar Inverse.java
+ * javac -cp .:../../../../target/GeographicLib-Java-2.0-SNAPSHOT.jar Inverse.java
  * echo -30 0 29.5 179.5 |
- *   java -cp .:../../../../target/GeographicLib-Java-1.52.jar Inverse </pre>
+ *   java -cp .:../../../../target/GeographicLib-Java-2.0-SNAPSHOT.jar Inverse </pre>
  *
  * <h4>Using maven to build and run {@code Inverse.java}</h4>
  * The sample code includes a {@code pom.xml} which specifies
@@ -263,8 +263,15 @@
  * <h3>Change log</h3>
  * <ul>
  * <li>
+ *   <a href="https://geographiclib.sourceforge.io/Jave/2.0">Version 2.0</a>
+ *   (released 2022-mm-dd)
+ * <ul>
+ * <li>
+ *    XXX
+ * </ul>
+ * <li>
  *   <a href="https://geographiclib.sourceforge.io/1.52/java">Version 1.52</a>
- *   (released 2021-mm-dd)
+ *   (released 2021-06-21)
  * <ul>
  * <li>
  *   Be more aggressive in preventing negative s12 and m12 for short

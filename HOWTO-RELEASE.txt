@@ -1,0 +1,38 @@
+Maven life cycle
+https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+clean validate compile test package verify install deploy
+with -P release extra stuff is done with
+package: javadoc sources
+verify: sign
+
+Version update checks
+https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java/1.52/jar
+https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java/1.52/jar
+# Java
+#   java/pom.xml java/*/pom.xml
+#   java/src/main/java/net/sf/geographiclib/package-info.java (date +
+#   update change log)
+#   (remember to remove SNAPSHOT from version number of lib in test programs)
+# probably should deploy a SNAPSHOT version of the lib to grease the
+# wheels
+
+# java release -- authentication via ~/.m2/settings.xml; this gets signed too
+# (multiple ~4 times!).
+cd $TEMP/gita/geographiclib/java
+mvn clean deploy -P release
+
+Maven versions
+‎ 1.52 2021-06-22
+‎ 1.51 2020-11-22
+‎ 1.50 2019-09-24
+‎ 1.49 2017-10-05
+‎ 1.48 2017-04-09
+‎ 1.47 2017-02-15
+‎ 1.46 2016-02-14
+‎ 1.45 2015-09-30
+‎ 1.44 2015-08-14
+‎ 1.43 2015-05-22
+‎ 1.42 2015-04-27
+
+First Java implementation
+ 1.31 2013-07-01

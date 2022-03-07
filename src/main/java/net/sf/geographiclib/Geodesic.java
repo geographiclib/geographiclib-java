@@ -1442,11 +1442,7 @@ public class Geodesic {
     } else {
       // Scale lam12 and bet2 to x, y coordinate system where antipodal point
       // is at origin and singular point is at y = 0, x = -1.
-      double y, lamscale, betscale;
-      // In C++ volatile declaration needed to fix inverse case
-      // 56.320923501171 0 -56.320923501171 179.664747671772880215
-      // which otherwise fails with g++ 4.4.4 x86 -O3
-      double x;
+      double x, y, lamscale, betscale;
       double lam12x = Math.atan2(-slam12, -clam12); // lam12 - pi
       if (_f >= 0) {            // In fact f == 0 does not get here
         // x = dlong, y = dlat
