@@ -36,6 +36,9 @@ $(PACKAGES) : $(SOURCES) $(TESTS)
 install: $(PACKAGES)
 	mvn -q install -P release
 
+test:
+	mvn -q test
+
 distrib-doc: $(PACKAGES)
 	rsync -a --delete target/apidocs/ $(WEBSTAGE)/htdocs/Java/$(VERSION)/
 	rsync --delete -av -e ssh $(WEBSTAGE)/htdocs/Java $(USER),geographiclib@web.sourceforge.net:./htdocs
@@ -47,7 +50,7 @@ sanitize: checktrailingspace checktabs checkblanklines
 
 checktrailingspace:
 	@echo "Looking for trailing spaces"
-	@git ls-tree -r HEAD --name-only | xargs grep ' $$' || true
+	@git ls-tree -r HEAD --name-only | xargs grep '[	 ]$$' || true
 
 checktabs:
 	@echo "Looking for tabs"

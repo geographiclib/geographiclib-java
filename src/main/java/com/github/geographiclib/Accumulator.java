@@ -133,7 +133,7 @@ public class Accumulator {
    * Put <i>sum</i> in the rangle [&minus;<i>y</i>, <i>y</i>].
    **********************************************************************/
   public void Remainder(double y) {
-    _s = GeoMath.remainder(_s, y);
+    _s = Math.IEEEremainder(_s, y);
     Add(0.0);                   // renormalize
   }
 }

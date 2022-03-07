@@ -274,9 +274,9 @@ public class Geodesic {
     _etol2 = 0.1 * tol2_ /
               Math.sqrt( Math.max(0.001, Math.abs(_f)) *
                          Math.min(1.0, 1 - _f/2) / 2 );
-    if (!(GeoMath.isfinite(_a) && _a > 0))
+    if (!(Double.isFinite(_a) && _a > 0))
       throw new GeographicErr("Equatorial radius is not positive");
-    if (!(GeoMath.isfinite(_b) && _b > 0))
+    if (!(Double.isFinite(_b) && _b > 0))
       throw new GeographicErr("Polar semi-axis is not positive");
     _A3x = new double[nA3x_];
     _C3x = new double[nC3x_];
@@ -648,14 +648,13 @@ public class Geodesic {
       r.lon1 = GeoMath.AngNormalize(lon1); r.lon2 = GeoMath.AngNormalize(lon2);
     }
     // Make longitude difference positive.
-    int lonsign = lon12 >= 0 ? 1 : -1;
-    // If very close to being on the same half-meridian, then make it so.
-    lon12 = lonsign * GeoMath.AngRound(lon12);
-    lon12s = GeoMath.AngRound((180 - lon12) - lonsign * lon12s);
-    double
-      lam12 = Math.toRadians(lon12), slam12, clam12;
-    GeoMath.sincosd(p, lon12 > 90 ? lon12s : lon12);
-    slam12 = p.first; clam12 = (lon12 > 90 ? -1 : 1) * p.second;
+    int lonsign = (int)Math.copySign(1.0, lon12);
+    lon12 *= lonsign; lon12s *= lonsign;
+    double lam12 = Math.toRadians(lon12), slam12, clam12;
+    // Calculate sincos of lon12 + error (this applies AngRound internally).
+    GeoMath.sincosde(p, lon12, lon12s);
+    slam12 = p.first; clam12 = p.second;
+    lon12s = (180 - lon12) - lon12s; // the supplementary longitude difference
 
     // Swap points so that point with higher (abs) latitude is point 1
     // If one latitude is a nan, then it becomes lat1.
@@ -665,7 +664,7 @@ public class Geodesic {
       { double t = lat1; lat1 = lat2; lat2 = t; }
     }
     // Make lat1 <= 0
-    int latsign = lat1 < 0 ? 1 : -1;
+    int latsign = (int)Math.copySign(1.0, -lat1);
     lat1 *= latsign;
     lat2 *= latsign;
     // Now we have
@@ -706,7 +705,7 @@ public class Geodesic {
 
     if (cbet1 < -sbet1) {
       if (cbet2 == cbet1)
-        sbet2 = sbet2 < 0 ? sbet1 : -sbet1;
+        sbet2 = Math.copySign(sbet1, sbet2);
     } else {
       if (Math.abs(sbet2) == -sbet1)
         cbet2 = cbet1;
@@ -739,7 +738,7 @@ public class Geodesic {
         ssig1 = sbet1, csig1 = calp1 * cbet1,
         ssig2 = sbet2, csig2 = calp2 * cbet2;
 
-      // sig12 = sig2 - sig1
+      // sig12 = sig2 - sig1 (N.B. with Java max(+0.0, -0.0) -> +0.0)
       sig12 = Math.atan2(Math.max(0.0, csig1 * ssig2 - ssig1 * csig2),
                                        csig1 * csig2 + ssig1 * ssig2);
       Lengths(v, _n, sig12, ssig1, csig1, dn1,

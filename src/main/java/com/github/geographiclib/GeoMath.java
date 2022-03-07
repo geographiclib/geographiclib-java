@@ -71,7 +71,7 @@ public class GeoMath {
     double vpp = s - up;
     up -= u;
     vpp -= v;
-    double t = -(up + vpp);
+    double t = s != 0 ? 0.0 - (up + vpp) : s;
     // u + v =       s      + t
     //       = round(u + v) + t
     p.first = s; p.second = t;
@@ -114,25 +114,10 @@ public class GeoMath {
    **********************************************************************/
   public static double AngRound(double x) {
     final double z = 1/16.0;
-    if (x == 0) return 0;
     double y = Math.abs(x);
     // The compiler mustn't "simplify" z - (z - y) to y
     y = y < z ? z - (z - y) : y;
-    return x < 0 ? -y : y;
-  }
-
-  /**
-   * The remainder function.
-   * <p>
-   * @param x the numerator of the division
-   * @param y the denominator of the division
-   * @return the remainder in the range [&minus;<i>y</i>/2, <i>y</i>/2].
-   * <p>
-   * The range of <i>x</i> is unrestricted; <i>y</i> must be positive.
-   **********************************************************************/
-  public static double remainder(double x, double y) {
-    x = x % y;
-    return x < -y/2 ? x + y : (x < y/2 ? x : x - y);
+    return Math.copySign(y, x);
   }
 
   /**
@@ -144,8 +129,8 @@ public class GeoMath {
    * The range of <i>x</i> is unrestricted.
    **********************************************************************/
   public static double AngNormalize(double x) {
-    x = remainder(x, 360.0);
-    return x == -180 ? 180 : x;
+    double y = Math.IEEEremainder(x, 360.0);
+    return Math.abs(y) == 180 ? Math.copySign(180.0, x) : y;
   }
 
   /**
@@ -167,16 +152,22 @@ public class GeoMath {
    * @param p output Pair(<i>d</i>, <i>e</i>) with <i>d</i> being the rounded
    *   difference and <i>e</i> being the error.
    * <p>
-   * The computes <i>z</i> = <i>y</i> &minus; <i>x</i> exactly, reduced to
-   * (&minus;180&deg;, 180&deg;]; and then sets <i>z</i> = <i>d</i> + <i>e</i>
+   * This computes <i>z</i> = <i>y</i> &minus; <i>x</i> exactly, reduced to
+   * [&minus;180&deg;, 180&deg;]; and then sets <i>z</i> = <i>d</i> + <i>e</i>
    * where <i>d</i> is the nearest representable number to <i>z</i> and
-   * <i>e</i> is the truncation error.  If <i>d</i> = &minus;180, then <i>e</i>
-   * &gt; 0; If <i>d</i> = 180, then <i>e</i> &le; 0.
+   * <i>e</i> is the truncation error.  If <i>z</i> = &plusmn;0&deg; or
+   * &plusmn;180&deg;, then the sign of <i>d</i> is given by the sign of
+   * <i>y</i> &minus; <i>x</i>.  The maximum absolute value of <i>e</i> is
+   * 2<sup>&minus;26</sup> (for doubles).
    **********************************************************************/
   public static void AngDiff(Pair p, double x, double y) {
-    sum(p, AngNormalize(-x), AngNormalize(y));
-    double d = AngNormalize(p.first), t = p.second;
-    sum(p, d == 180 && t > 0 ? -180 : d, t);
+    sum(p, Math.IEEEremainder(-x, 360.0), Math.IEEEremainder(y, 360.0));
+    sum(p, Math.IEEEremainder(p.first, 360.0), p.second);
+    if (p.first == 0 || Math.abs(p.first) == 180)
+      // p = [d, e]...
+      // If e == 0, take sign from y - x
+      // else (e != 0, implies d = +/-180), d and e must have opposite signs
+      p.first = Math.copySign(p.first, p.second == 0 ? y - x : -p.second);
   }
 
   /**
@@ -207,8 +198,44 @@ public class GeoMath {
     case  2: sinx = -s; cosx = -c; break;
     default: sinx = -c; cosx =  s; break; // case 3
     }
-    if (x != 0) { sinx += 0.0; cosx += 0.0; }
-    p.first = sinx; p.second = cosx;
+    if (sinx == 0) sinx = Math.copySign(sinx, x);
+    p.first = sinx; p.second = 0.0 + cosx;
+  }
+
+  /**
+   * Evaluate the sine and cosine function with reduced argument plus correction
+   *
+   * @param p return Pair(<i>s</i>, <i>t</i>) with <i>s</i> =
+   *   sin(<i>x</i> +  <i>t</i>) and <i>c</i> = cos(<i>x</i> + <i>t</i>).
+   * @param x reduced angle in degrees.
+   * @param t correction in degrees.
+   * <p>
+   * This is a variant of GeoMath.sincosd allowing a correction to the angle to
+   * be supplied.  <i>x</i> x must be in [&minus;180&deg;, 180&deg;] and
+   * <i>t</i> is assumed to be a <i>small</i> correction.  GeoMath.AngRound is
+   * applied to the reduced angle to prevent problems with <i>x</i> + <i>t</i>
+   * being extremely close but not exactly equal to one of the four cardinal
+   * directions.
+   **********************************************************************/
+  public static void sincosde(Pair p, double x, double t) {
+    // In order to minimize round-off errors, this function exactly reduces
+    // the argument to the range [-45, 45] before converting it to radians.
+    double r; int q;
+    q = (int)Math.round(x / 90); // If r is NaN this returns 0
+    r = x - 90 * q;
+    // now abs(r) <= 45
+    r = Math.toRadians(GeoMath.AngRound(r + t));
+    // Possibly could call the gnu extension sincos
+    double s = Math.sin(r), c = Math.cos(r);
+    double sinx, cosx;
+    switch (q & 3) {
+    case  0: sinx =  s; cosx =  c; break;
+    case  1: sinx =  c; cosx = -s; break;
+    case  2: sinx = -s; cosx = -c; break;
+    default: sinx = -c; cosx =  s; break; // case 3
+    }
+    if (sinx == 0) sinx = Math.copySign(sinx, x);
+    p.first = sinx; p.second = 0.0 + cosx;
   }
 
   /**
@@ -240,22 +267,12 @@ public class GeoMath {
       //   case 0: ang = 0 + ang; break;
       //
       // and handle mpfr as in AngRound.
-    case 1: ang = (y >= 0 ? 180 : -180) - ang; break;
-    case 2: ang =  90 - ang; break;
-    case 3: ang = -90 + ang; break;
+    case 1: ang = Math.copySign(180.0, y) - ang; break;
+    case 2: ang =                90       - ang; break;
+    case 3: ang =               -90       + ang; break;
     default: break;
     }
     return ang;
-  }
-
-  /**
-   * Test for finiteness.
-   * <p>
-   * @param x the argument.
-   * @return true if number is finite, false if NaN or infinite.
-   **********************************************************************/
-  public static boolean isfinite(double x) {
-    return Math.abs(x) <= Double.MAX_VALUE;
   }
 
   private GeoMath() {}

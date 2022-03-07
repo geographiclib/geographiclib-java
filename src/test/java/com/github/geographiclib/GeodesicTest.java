@@ -7,7 +7,6 @@ import com.github.geographiclib.*;
 
 public class GeodesicTest {
 
-  private static boolean isNaN(double x) { return x != x; }
   private static final PolygonArea polygon =
     new PolygonArea(Geodesic.WGS84, false);
   private static final PolygonArea polyline =
@@ -293,9 +292,9 @@ public class GeodesicTest {
   public void GeodSolve14() {
     // Check fix for inverse ignoring lon12 = nan
     GeodesicData inv = Geodesic.WGS84.Inverse(0, 0, 1, Double.NaN);
-    assertTrue(isNaN(inv.azi1));
-    assertTrue(isNaN(inv.azi2));
-    assertTrue(isNaN(inv.s12));
+    assertTrue(Double.isNaN(inv.azi1));
+    assertTrue(Double.isNaN(inv.azi2));
+    assertTrue(Double.isNaN(inv.s12));
   }
 
   @Test
@@ -421,13 +420,13 @@ public class GeodesicTest {
     // Check fix for nan + point on equator or pole not returning all nans in
     // Geodesic::Inverse, found 2015-09-23.
     GeodesicData inv = Geodesic.WGS84.Inverse(Double.NaN, 0, 0, 90);
-    assertTrue(isNaN(inv.azi1));
-    assertTrue(isNaN(inv.azi2));
-    assertTrue(isNaN(inv.s12));
+    assertTrue(Double.isNaN(inv.azi1));
+    assertTrue(Double.isNaN(inv.azi2));
+    assertTrue(Double.isNaN(inv.s12));
     inv = Geodesic.WGS84.Inverse(Double.NaN, 0, 90, 3);
-    assertTrue(isNaN(inv.azi1));
-    assertTrue(isNaN(inv.azi2));
-    assertTrue(isNaN(inv.s12));
+    assertTrue(Double.isNaN(inv.azi1));
+    assertTrue(Double.isNaN(inv.azi2));
+    assertTrue(Double.isNaN(inv.s12));
   }
 
   @Test
@@ -612,7 +611,7 @@ public class GeodesicTest {
     // An incapable line which can't take distance as input
     GeodesicLine line = Geodesic.WGS84.Line(1, 2, 90, GeodesicMask.LATITUDE);
     GeodesicData dir = line.Position(1000, GeodesicMask.NONE);
-    assertTrue(isNaN(dir.a12));
+    assertTrue(Double.isNaN(dir.a12));
   }
 
   @Test
@@ -621,37 +620,37 @@ public class GeodesicTest {
     // {fmod,sin,cos}(inf) (includes GeodSolve84 - GeodSolve91).
     GeodesicData dir;
     dir = Geodesic.WGS84.Direct(0, 0, 90, Double.POSITIVE_INFINITY);
-    assertTrue(isNaN(dir.lat2));
-    assertTrue(isNaN(dir.lon2));
-    assertTrue(isNaN(dir.azi2));
+    assertTrue(Double.isNaN(dir.lat2));
+    assertTrue(Double.isNaN(dir.lon2));
+    assertTrue(Double.isNaN(dir.azi2));
     dir = Geodesic.WGS84.Direct(0, 0, 90, Double.NaN);
-    assertTrue(isNaN(dir.lat2));
-    assertTrue(isNaN(dir.lon2));
-    assertTrue(isNaN(dir.azi2));
+    assertTrue(Double.isNaN(dir.lat2));
+    assertTrue(Double.isNaN(dir.lon2));
+    assertTrue(Double.isNaN(dir.azi2));
     dir = Geodesic.WGS84.Direct(0, 0, Double.POSITIVE_INFINITY, 1000);
-    assertTrue(isNaN(dir.lat2));
-    assertTrue(isNaN(dir.lon2));
-    assertTrue(isNaN(dir.azi2));
+    assertTrue(Double.isNaN(dir.lat2));
+    assertTrue(Double.isNaN(dir.lon2));
+    assertTrue(Double.isNaN(dir.azi2));
     dir = Geodesic.WGS84.Direct(0, 0, Double.NaN, 1000);
-    assertTrue(isNaN(dir.lat2));
-    assertTrue(isNaN(dir.lon2));
-    assertTrue(isNaN(dir.azi2));
+    assertTrue(Double.isNaN(dir.lat2));
+    assertTrue(Double.isNaN(dir.lon2));
+    assertTrue(Double.isNaN(dir.azi2));
     dir = Geodesic.WGS84.Direct(0, Double.POSITIVE_INFINITY, 90, 1000);
     assertTrue(dir.lat2 == 0);
-    assertTrue(isNaN(dir.lon2));
+    assertTrue(Double.isNaN(dir.lon2));
     assertTrue(dir.azi2 == 90);
     dir = Geodesic.WGS84.Direct(0, Double.NaN, 90, 1000);
     assertTrue(dir.lat2 == 0);
-    assertTrue(isNaN(dir.lon2));
+    assertTrue(Double.isNaN(dir.lon2));
     assertTrue(dir.azi2 == 90);
     dir = Geodesic.WGS84.Direct(Double.POSITIVE_INFINITY, 0, 90, 1000);
-    assertTrue(isNaN(dir.lat2));
-    assertTrue(isNaN(dir.lon2));
-    assertTrue(isNaN(dir.azi2));
+    assertTrue(Double.isNaN(dir.lat2));
+    assertTrue(Double.isNaN(dir.lon2));
+    assertTrue(Double.isNaN(dir.azi2));
     dir = Geodesic.WGS84.Direct(Double.NaN, 0, 90, 1000);
-    assertTrue(isNaN(dir.lat2));
-    assertTrue(isNaN(dir.lon2));
-    assertTrue(isNaN(dir.azi2));
+    assertTrue(Double.isNaN(dir.lat2));
+    assertTrue(Double.isNaN(dir.lon2));
+    assertTrue(Double.isNaN(dir.azi2));
   }
 
   @Test
@@ -671,9 +670,9 @@ public class GeodesicTest {
     // Check fix for lat2 = nan being treated as lat2 = 0 (bug found
     // 2021-07-26)
     GeodesicData inv = Geodesic.WGS84.Inverse(0, 0, Double.NaN, 90);
-    assertTrue(isNaN(inv.azi1));
-    assertTrue(isNaN(inv.azi2));
-    assertTrue(isNaN(inv.s12));
+    assertTrue(Double.isNaN(inv.azi1));
+    assertTrue(Double.isNaN(inv.azi2));
+    assertTrue(Double.isNaN(inv.s12));
   }
 
   @Test
@@ -700,7 +699,7 @@ public class GeodesicTest {
     assertEquals(a.area, 63758202715511.0, 1);
     a = PolyLength(pd);
     assertEquals(a.perimeter, 20020719, 1);
-    assertTrue(isNaN(a.area));
+    assertTrue(Double.isNaN(a.area));
   }
 
   @Test
@@ -736,7 +735,8 @@ public class GeodesicTest {
   @Test
   public void Planimeter12() {
     // Area of arctic circle (not really -- adjunct to rhumb-area test)
-    double points[][] = {{66.562222222, 0}, {66.562222222, 180}};
+    double points[][] =
+      {{66.562222222, 0}, {66.562222222, 180}, {66.562222222, 360}};
     PolygonResult a = Planimeter(points);
     assertEquals(a.perimeter, 10465729, 1);
     assertEquals(a.area, 0, 1);
@@ -804,8 +804,8 @@ public class GeodesicTest {
     assertTrue(a.area == 0);
     assertTrue(a.perimeter == 0);
     a = polygon.TestEdge(90, 1000, false, true);
-    assertTrue(isNaN(a.area));
-    assertTrue(isNaN(a.perimeter));
+    assertTrue(Double.isNaN(a.area));
+    assertTrue(Double.isNaN(a.perimeter));
     polygon.AddPoint(1, 1);
     a = polygon.Compute(false, true);
     assertTrue(a.area == 0);
@@ -816,7 +816,7 @@ public class GeodesicTest {
     a = polyline.TestPoint(1, 1, false, true);
     assertTrue(a.perimeter == 0);
     a = polyline.TestEdge(90, 1000, false, true);
-    assertTrue(isNaN(a.perimeter));
+    assertTrue(Double.isNaN(a.perimeter));
     polyline.AddPoint(1, 1);
     a = polyline.Compute(false, true);
     assertTrue(a.perimeter == 0);

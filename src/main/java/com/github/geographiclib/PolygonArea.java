@@ -75,10 +75,10 @@ public class PolygonArea {
     // Return 1 or -1 if crossing prime meridian in east or west direction.
     // Otherwise return zero.
     // Compute lon12 the same way as Geodesic.Inverse.
-    lon1 = GeoMath.AngNormalize(lon1);
-    lon2 = GeoMath.AngNormalize(lon2);
     Pair p = new Pair();
     GeoMath.AngDiff(p, lon1, lon2);
+    lon1 = GeoMath.AngNormalize(lon1);
+    lon2 = GeoMath.AngNormalize(lon2);
     double lon12 = p.first;
     int cross =
       lon1 <= 0 && lon2 > 0 && lon12 > 0 ? 1 :
@@ -125,7 +125,7 @@ public class PolygonArea {
   private static double AreaReduceB(double area, double area0,
                                     int crossings,
                                     boolean reverse, boolean sign) {
-    area = GeoMath.remainder(area, area0);
+    area = Math.IEEEremainder(area, area0);
     if ((crossings & 1) != 0)
       area += (area < 0 ? 1 : -1) * area0/2;
     // area is with the clockwise sense.  If !reverse convert to
@@ -188,7 +188,6 @@ public class PolygonArea {
    * <i>lat</i> should be in the range [&minus;90&deg;, 90&deg;].
    **********************************************************************/
   public void AddPoint(double lat, double lon) {
-    lon = GeoMath.AngNormalize(lon);
     if (_num == 0) {
       _lat0 = _lat1 = lat;
       _lon0 = _lon1 = lon;
