@@ -1,11 +1,11 @@
 /**
- * Implementation of the net.sf.geographiclib.PolygonArea class
+ * Implementation of the com.github.geographiclib.PolygonArea class
  *
  * Copyright (c) Charles Karney (2013-2020) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package net.sf.geographiclib;
+package com.github.geographiclib;
 
 /**
  * Polygon areas.
@@ -43,7 +43,7 @@ package net.sf.geographiclib;
  * // the perimeter of the polygon and its area (for the WGS84 ellipsoid).
  *
  * import java.util.*;
- * import net.sf.geographiclib.*;
+ * import com.github.geographiclib.*;
  *
  * public class Planimeter {
  *   public static void main(String[] args) {

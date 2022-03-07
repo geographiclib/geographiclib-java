@@ -6,11 +6,11 @@ package: javadoc sources
 verify: sign
 
 Version update checks
-https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java/1.52/jar
+https://search.maven.org/artifact/com.github.geographiclib/GeographicLib-Java/1.52/jar
 https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java/1.52/jar
 # Java
 #   java/pom.xml java/*/pom.xml
-#   java/src/main/java/net/sf/geographiclib/package-info.java (date +
+#   java/src/main/java/com/github/geographiclib/package-info.java (date +
 #   update change log)
 #   (remember to remove SNAPSHOT from version number of lib in test programs)
 # probably should deploy a SNAPSHOT version of the lib to grease the

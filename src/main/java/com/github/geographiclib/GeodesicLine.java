@@ -1,11 +1,11 @@
 /**
- * Implementation of the net.sf.geographiclib.GeodesicLine class
+ * Implementation of the com.github.geographiclib.GeodesicLine class
  *
  * Copyright (c) Charles Karney (2013-2020) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package net.sf.geographiclib;
+package com.github.geographiclib;
 
 /**
  * A geodesic line.
@@ -52,7 +52,7 @@ package net.sf.geographiclib;
  * Here's an example of using this class
  * <pre>
  * {@code
- * import net.sf.geographiclib.*;
+ * import com.github.geographiclib.*;
  * public class GeodesicLineTest {
  *   public static void main(String[] args) {
  *     // Print waypoints between JFK and SIN

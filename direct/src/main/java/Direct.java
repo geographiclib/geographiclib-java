@@ -3,7 +3,7 @@
  **********************************************************************/
 
 import java.util.*;
-import net.sf.geographiclib.*;
+import com.github.geographiclib.*;
 public class Direct {
 /**
  * Solve the direct geodesic problem.

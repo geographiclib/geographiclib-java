@@ -1,12 +1,12 @@
 /**
- * Implementation of the net.sf.geographiclib.Gnomonic class
+ * Implementation of the com.github.geographiclib.Gnomonic class
  *
  * Copyright (c) BMW Car IT GmbH (2014-2019) <sebastian.mattheis@bmw-carit.de>
  * and Charles Karney (2020) <charles@karney.com>∑ and licensed and licensed
  * under the MIT/X11 License. For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package net.sf.geographiclib;
+package com.github.geographiclib;
 
 /**
  * Gnomonic projection.
@@ -106,9 +106,9 @@ package net.sf.geographiclib;
  *
  * <pre>
  * // Example of using the Gnomonic.java class
- * import net.sf.geographiclib.Geodesic;
- * import net.sf.geographiclib.Gnomonic;
- * import net.sf.geographiclib.GnomonicData;
+ * import com.github.geographiclib.Geodesic;
+ * import com.github.geographiclib.Gnomonic;
+ * import com.github.geographiclib.GnomonicData;
  * public class ExampleGnomonic {
  *   public static void main(String[] args) {
  *     Geodesic geod = Geodesic.WGS84;

@@ -8,7 +8,8 @@ The algorithms are documented in
   [Addenda](https://geographiclib.sourceforge.io/miscgeod-addenda.html).
 
 The Java package is available
-[here](https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java).
+[here OLD](https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java).
+[here NEW](https://search.maven.org/artifact/com.github.geographiclib/GeographicLib-Java).
 
 Here is the documentation on the
 [application programming interface](https://geographiclib.sourceforge.io/html/java/)

@@ -1,11 +1,11 @@
 /**
- * Implementation of the net.sf.geographiclib.Geodesic class
+ * Implementation of the com.github.geographiclib.Geodesic class
  *
  * Copyright (c) Charles Karney (2013-2021) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package net.sf.geographiclib;
+package com.github.geographiclib;
 
 /**
  * Geodesic calculations.
@@ -183,7 +183,7 @@ package net.sf.geographiclib;
  * // out lines with lat2, lon2, azi2 (for the WGS84 ellipsoid).
  *
  * import java.util.*;
- * import net.sf.geographiclib.*;
+ * import com.github.geographiclib.*;
  * public class Direct {
  *   public static void main(String[] args) {
  *     try {

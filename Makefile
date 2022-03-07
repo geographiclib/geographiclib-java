@@ -1,13 +1,46 @@
-USER=karney
-STAGE=$(HOME)/web
-WEBSTAGE=$(STAGE)/geographiclib-web
-VERSION=$(shell grep /version pom.xml | tr '<>\n' / | cut -d/ -f3)
+USER = karney
+STAGE = $(HOME)/web
+WEBSTAGE = $(STAGE)/geographiclib-web
+VERSION = $(shell grep /version pom.xml | tr '<>\n' / | cut -d/ -f3)
+SOURCEDIR = src/main/java/com/github/geographiclib
+TESTDIR = src/test/java/com/github/geographiclib
 
-all:
+SOURCES= \
+$(SOURCEDIR)/Accumulator.java \
+$(SOURCEDIR)/Constants.java \
+$(SOURCEDIR)/GeoMath.java \
+$(SOURCEDIR)/Geodesic.java \
+$(SOURCEDIR)/GeodesicData.java \
+$(SOURCEDIR)/GeodesicLine.java \
+$(SOURCEDIR)/GeodesicMask.java \
+$(SOURCEDIR)/GeographicErr.java \
+$(SOURCEDIR)/Gnomonic.java \
+$(SOURCEDIR)/GnomonicData.java \
+$(SOURCEDIR)/Pair.java \
+$(SOURCEDIR)/PolygonArea.java \
+$(SOURCEDIR)/PolygonResult.java \
+$(SOURCEDIR)/package-info.java
+
+TESTS = $(TESTDIR)/GeodesicTest.java
+
+PACKAGES= \
+target/GeographicLib-Java-$(VERSION).jar \
+target/GeographicLib-Java-$(VERSION)-javadoc.jar \
+target/GeographicLib-Java-$(VERSION)-sources.jar
+
+all: $(PACKAGES)
+
+$(PACKAGES) : $(SOURCES) $(TESTS)
 	mvn -q package -P release
-	rsync -a --delete target/apidocs/ $(WEBSTAGE)/htdocs/Java/$(VERSION)/
 
-depoly:
+install: $(PACKAGES)
+	mvn -q install -P release
+
+distrib-doc: $(PACKAGES)
+	rsync -a --delete target/apidocs/ $(WEBSTAGE)/htdocs/Java/$(VERSION)/
+	rsync --delete -av -e ssh $(WEBSTAGE)/htdocs/Java $(USER),geographiclib@web.sourceforge.net:./htdocs
+
+deploy:
 	mvn -q deploy -P release
 
 sanitize: checktrailingspace checktabs checkblanklines
@@ -31,7 +64,7 @@ clean:
 	mvn clean
 
 reallyclean: clean
-	rm -rf $$HOME/.m2/repository/net/sf/geographiclib/GeographicLib-Java/$(VERSION)
+	rm -rf $(HOME)/.m2/repository/com/github/geographiclib/GeographicLib-Java/$(VERSION)
 
 checkversion:
 	grep "<version>$(VERSION)</version>" pom.xml \

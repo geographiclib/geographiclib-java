@@ -5,8 +5,8 @@
  *
  * <p>
  * The documentation for other versions is available at
- * <code>https://geographiclib.sourceforge.io/m.nn/java</code> for versions
- * numbers <code>m.nn</code> &ge; 1.31.
+ * <code>https://geographiclib.sourceforge.io/Java/m.n</code> for versions
+ * numbers <code>m.n</code> &ge; 1.31.
  * <p>
  * Licensed under the
  * <a href="https://www.opensource.org/licenses/MIT">MIT/X11 License</a>; see
@@ -39,7 +39,7 @@
  * as either a compressed tar file (tar.gz) or a zip file.  After unpacking
  * the source, the Java library can be found in GeographicLib-2.0-SNAPSHOT/java.  (This
  * library is completely independent from the rest of GeodegraphicLib.)  The
- * library consists of the files in the src/main/java/net/sf/geographiclib
+ * library consists of the files in the src/main/java/com/github/geographiclib
  * subdirectory.
  *
  * <h4>The pre-built package</h4>
@@ -48,7 +48,7 @@
  * <a href="https://maven.apache.org/">maven</a> to build your code, you just
  * need to include the dependency <pre>{@code
  *   <dependency>
- *     <groupId>net.sf.geographiclib</groupId>
+ *     <groupId>com.github.geographiclib</groupId>
  *     <artifactId>GeographicLib-Java</artifactId>
  *     <version>2.0-SNAPSHOT</version>
  *   </dependency> }</pre>
@@ -76,7 +76,7 @@
  * // out lines with azi1, azi2, s12 (for the WGS84 ellipsoid).
  *
  * import java.util.*;
- * import net.sf.geographiclib.*;
+ * import com.github.geographiclib.*;
  * public class Inverse {
  *   public static void main(String[] args) {
  *     try {
@@ -138,7 +138,7 @@
  * <ul>
  * <li>
  *   Put <pre>
- *   import net.sf.geographiclib.*</pre>
+ *   import com.github.geographiclib.*</pre>
  *   in your source code.
  * <li>
  *   Make calls to the geodesic routines from your code.
@@ -149,26 +149,26 @@
  * The important classes are
  * <ul>
  * <li>
- *   {@link net.sf.geographiclib.Geodesic}, for direct and inverse geodesic
+ *   {@link com.github.geographiclib.Geodesic}, for direct and inverse geodesic
  *   calculations;
  * <li>
- *   {@link net.sf.geographiclib.GeodesicLine}, an efficient way of
+ *   {@link com.github.geographiclib.GeodesicLine}, an efficient way of
  *   calculating multiple points on a single geodesic;
  * <li>
- *   {@link net.sf.geographiclib.GeodesicData}, the object containing the
+ *   {@link com.github.geographiclib.GeodesicData}, the object containing the
  *   results of the geodesic calculations;
  * <li>
- *   {@link net.sf.geographiclib.GeodesicMask}, the constants that let you
+ *   {@link com.github.geographiclib.GeodesicMask}, the constants that let you
  *   specify the variables to return in
- *   {@link net.sf.geographiclib.GeodesicData} and the capabilities of a
- *   {@link net.sf.geographiclib.GeodesicLine};
+ *   {@link com.github.geographiclib.GeodesicData} and the capabilities of a
+ *   {@link com.github.geographiclib.GeodesicLine};
  * <li>
- *   {@link net.sf.geographiclib.Constants}, the parameters for the WGS84
+ *   {@link com.github.geographiclib.Constants}, the parameters for the WGS84
  *   ellipsoid;
  * <li>
- *   {@link net.sf.geographiclib.PolygonArea}, a class to compute the
+ *   {@link com.github.geographiclib.PolygonArea}, a class to compute the
  *   perimeter and area of a geodesic polygon (returned as a
- *   {@link net.sf.geographiclib.PolygonResult}).
+ *   {@link com.github.geographiclib.PolygonResult}).
  * </ul>
  * <p>
  * The documentation is generated using javadoc when
@@ -222,8 +222,10 @@
  *         documentation</a>
  *     <li>
  *       Java (geodesic routines):
- *       <a href="https://repo1.maven.org/maven2/net/sf/geographiclib/GeographicLib-Java/">
- *         Maven Central package</a>,
+ *       <a href="https://search.maven.org/artifact/com.github.geographiclib/GeographicLib-Java">
+ *         Maven Central package OLD</a>,
+ *       <a href="https://search.maven.org/artifact/com.github.geographiclib/GeographicLib-Java">
+ *         Maven Central package OLD</a>,
  *       <a href="https://geographiclib.sourceforge.io/html/java/">
  *         documentation</a>
  *     <li>
@@ -284,15 +286,15 @@
  * <li>
  *   In order to reduce the amount of memory allocation and garbage collection,
  *   introduce versions of GeoMath.norm, GeoMath.sum, GeoMath.AngDiff, and
- *   GeoMath.sincosd, which take a {@link net.sf.geographiclib.Pair} as a
- *   parameter instead of returning a new {@link net.sf.geographiclib.Pair}.
+ *   GeoMath.sincosd, which take a {@link com.github.geographiclib.Pair} as a
+ *   parameter instead of returning a new {@link com.github.geographiclib.Pair}.
  *   The previous versions are deprecated.
  * <li>
  *   Geodesic.MajorRadius() is now called
- *   {@link net.sf.geographiclib.Geodesic#EquatorialRadius()} and similarly for
- *   {@link net.sf.geographiclib.GeodesicLine},
- *   {@link net.sf.geographiclib.Gnomonic}, and
- *   {@link net.sf.geographiclib.PolygonArea}.
+ *   {@link com.github.geographiclib.Geodesic#EquatorialRadius()} and similarly for
+ *   {@link com.github.geographiclib.GeodesicLine},
+ *   {@link com.github.geographiclib.Gnomonic}, and
+ *   {@link com.github.geographiclib.PolygonArea}.
  * <li>
  *   Update to Java 1.7 or later to support testing on Mac OSX.
  * </ul>
@@ -301,7 +303,7 @@
  *   (released 2019-09-24)
  * <ul>
  * <li>
- *   {@link net.sf.geographiclib.PolygonArea} can now handle arbitrarily
+ *   {@link com.github.geographiclib.PolygonArea} can now handle arbitrarily
  *   complex polygons.  In the case of self-intersecting polygons the area is
  *   accumulated "algebraically", e.g., the areas of the 2 loops in a figure-8
  *   polygon will partially cancel.
@@ -366,7 +368,7 @@
  *   one of the latitudes is a NaN.
  * <li>
  *   Add implementation of the ellipsoidal
- *   {@link net.sf.geographiclib.Gnomonic} (courtesy of Sebastian Mattheis).
+ *   {@link com.github.geographiclib.Gnomonic} (courtesy of Sebastian Mattheis).
  * <li>
  *   Math.toRadians and Math.toDegrees are used instead of GeoMath.degree
  *   (which is now removed).  This requires Java 1.2 or later (released
@@ -395,4 +397,4 @@
  * </ul>
  * </ul>
  **********************************************************************/
-package net.sf.geographiclib;
+package com.github.geographiclib;

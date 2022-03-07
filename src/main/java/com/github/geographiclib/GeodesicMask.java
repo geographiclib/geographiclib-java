@@ -1,11 +1,11 @@
 /**
- * Implementation of the net.sf.geographiclib.GeodesicMask class
+ * Implementation of the com.github.geographiclib.GeodesicMask class
  *
  * Copyright (c) Charles Karney (2013-2014) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package net.sf.geographiclib;
+package com.github.geographiclib;
 
 /**
  * Bit masks for what geodesic calculations to do.
