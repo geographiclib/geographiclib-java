@@ -743,6 +743,16 @@ public class GeodesicTest {
   }
 
   @Test
+  public void Planimeter12r() {
+    // Reverse area of arctic circle
+    double points[][] =
+      {{66.562222222, -0}, {66.562222222, -180}, {66.562222222, -360}};
+    PolygonResult a = Planimeter(points);
+    assertEquals(a.perimeter, 10465729, 1);
+    assertEquals(a.area, 0, 1);
+  }
+
+  @Test
   public void Planimeter13() {
     // Check encircling pole twice
     double points[][] = {{89,-360}, {89,-240}, {89,-120},

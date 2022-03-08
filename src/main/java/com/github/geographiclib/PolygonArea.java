@@ -80,21 +80,20 @@ public class PolygonArea {
     lon1 = GeoMath.AngNormalize(lon1);
     lon2 = GeoMath.AngNormalize(lon2);
     double lon12 = p.first;
-    int cross =
-      lon1 <= 0 && lon2 > 0 && lon12 > 0 ? 1 :
-      (lon2 <= 0 && lon1 > 0 && lon12 < 0 ? -1 : 0);
-    return cross;
+    return
+      lon12 > 0 && ((lon1 < 0 && lon2 >= 0) ||
+                    (lon1 > 0 && lon2 == 0)) ? 1 :
+      (lon12 < 0 && lon1 >= 0 && lon2 < 0 ? -1 : 0);
   }
   // an alternate version of transit to deal with longitudes in the direct
   // problem.
   private static int transitdirect(double lon1, double lon2) {
     // We want to compute exactly
-    //   int(ceil(lon2 / 360)) - int(ceil(lon1 / 360))
-    // Since we only need the parity of the result we can use std::remquo but
-    // this is buggy with g++ 4.8.3 and requires C++11.  So instead we do
-    lon1 = lon1 % 720.0; lon2 = lon2 % 720.0;
-    return ( ((lon2 <= 0 && lon2 > -360) || lon2 > 360 ? 1 : 0) -
-             ((lon1 <= 0 && lon1 > -360) || lon1 > 360 ? 1 : 0) );
+    //   int(floor(lon2 / 360)) - int(floor(lon1 / 360))
+    lon1 = Math.IEEEremainder(lon1, 720.0);
+    lon2 = Math.IEEEremainder(lon2, 720.0);
+    return ( (lon2 >= 0 && lon2 < 360 ? 0 : 1) -
+             (lon1 >= 0 && lon1 < 360 ? 0 : 1) );
   }
   // reduce Accumulator area to allowed range
   private static double AreaReduceA(Accumulator area, double area0,
