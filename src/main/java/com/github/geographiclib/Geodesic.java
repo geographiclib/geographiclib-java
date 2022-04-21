@@ -1,7 +1,7 @@
 /**
  * Implementation of the com.github.geographiclib.Geodesic class
  *
- * Copyright (c) Charles Karney (2013-2021) <charles@karney.com> and licensed
+ * Copyright (c) Charles Karney (2013-2022) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
@@ -943,7 +943,7 @@ public class Geodesic {
         // Avoid problems with indeterminate sig1, sig2 on equator
         r.S12 = 0;
 
-      if (!meridian && somg12 > 1) {
+      if (!meridian && somg12 == 2) {
         somg12 = Math.sin(omg12); comg12 = Math.cos(omg12);
       }
 

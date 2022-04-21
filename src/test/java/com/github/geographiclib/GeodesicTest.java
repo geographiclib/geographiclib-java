@@ -676,6 +676,18 @@ public class GeodesicTest {
   }
 
   @Test
+  public void GeodSolve96() {
+    // Failure with long doubles found with test case from Nowak + Nowak Da
+    // Costa (2022).  Problem was using somg12 > 1 as a test that it needed
+    // to be set when roundoff could result in somg12 slightly bigger that 1.
+    // Found + fixed 2022-03-30.
+    Geodesic geod = new Geodesic(6378137, 1/298.257222101);
+    GeodesicData inv = geod.Inverse(0, 0, 60.0832522871723, 89.8492185074635,
+                                    GeodesicMask.AREA);
+    assertEquals(inv.S12, 42426932221845.0, 0.5);
+  }
+
+  @Test
   public void Planimeter0() {
     // Check fix for pole-encircling bug found 2011-03-16
     double pa[][] = {{89, 0}, {89, 90}, {89, 180}, {89, 270}};
@@ -839,7 +851,7 @@ public class GeodesicTest {
 
   @Test
   public void Planimeter21() {
-    // Some test to add code coverage: multiple circlings of pole (includes
+    // Some tests to add code coverage: multiple circlings of pole (includes
     // Planimeter21 - Planimeter28) + invocations via testpoint and testedge.
     PolygonResult a;
     double lat = 45,

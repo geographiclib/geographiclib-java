@@ -2,8 +2,8 @@
  * Implementation of the com.github.geographiclib.Gnomonic class
  *
  * Copyright (c) BMW Car IT GmbH (2014-2019) <sebastian.mattheis@bmw-carit.de>
- * and Charles Karney (2020) <charles@karney.com>∑ and licensed and licensed
- * under the MIT/X11 License. For more information, see
+ * and Charles Karney (2020-2022) <charles@karney.com> and licensed and
+ * licensed under the MIT/X11 License. For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
 package com.github.geographiclib;
