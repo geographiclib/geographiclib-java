@@ -10,7 +10,7 @@ package com.github.geographiclib;
 /**
  * Geodesic calculations.
  * <p>
- * The shortest path between two points on a ellipsoid at (<i>lat1</i>,
+ * The shortest path between two points on an ellipsoid at (<i>lat1</i>,
  * <i>lon1</i>) and (<i>lat2</i>, <i>lon2</i>) is called the geodesic.  Its
  * length is <i>s12</i> and the geodesic from point 1 to point 2 has azimuths
  * <i>azi1</i> and <i>azi2</i> at the two end points.  (The azimuth is the
@@ -240,7 +240,7 @@ public class Geodesic {
   private double _A3x[], _C3x[], _C4x[];
 
   /**
-   * Constructor for a ellipsoid with
+   * Constructor for an ellipsoid with
    * <p>
    * @param a equatorial radius (meters).
    * @param f flattening of ellipsoid.  Setting <i>f</i> = 0 gives a sphere.

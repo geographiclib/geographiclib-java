@@ -145,7 +145,7 @@ public class GeoMath {
   }
 
   /**
-   * The exact difference of two angles reduced to (&minus;180&deg;, 180&deg;].
+   * The exact difference of two angles reduced to [&minus;180&deg;, 180&deg;].
    * <p>
    * @param x the first angle in degrees.
    * @param y the second angle in degrees.
@@ -245,10 +245,8 @@ public class GeoMath {
    * @param x the cosine of the angle
    * @return atan2(<i>y</i>, <i>x</i>) in degrees.
    * <p>
-   * The result is in the range (&minus;180&deg; 180&deg;].  N.B.,
-   * atan2d(&plusmn;0, &minus;1) = +180&deg;; atan2d(&minus;&epsilon;,
-   * &minus;1) = &minus;180&deg;, for &epsilon; positive and tiny;
-   * atan2d(&plusmn;0, 1) = &plusmn;0&deg;.
+   * The result is in the range [&minus;180&deg; 180&deg;].  N.B.,
+   * atan2d(&plusmn;0, &minus;1) = &plusmn;180&deg;.
    **********************************************************************/
   public static double atan2d(double y, double x) {
     // In order to minimize round-off errors, this function rearranges the

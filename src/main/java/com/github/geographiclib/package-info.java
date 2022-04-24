@@ -10,7 +10,7 @@
  * <p>
  * Licensed under the
  * <a href="https://www.opensource.org/licenses/MIT">MIT/X11 License</a>; see
- * <a href="https://geographiclib.sourceforge.io/html/LICENSE.txt">
+ * <a href="https://geographiclib.sourceforge.io/LICENSE.txt">
  * LICENSE.txt</a>.
  *
  * <h3>Abstract</h3>

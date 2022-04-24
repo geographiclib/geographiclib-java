@@ -1,5 +1,11 @@
 # Java implementation of the geodesic routines in GeographicLib
 
+This is a library to solve geodesic problems on an ellipsoid model of
+the earth.
+
+Licensed under the MIT/X11 License; see
+[LICENSE.txt](https://geographiclib.sourceforge.io/LICENSE.txt).
+
 The algorithms are documented in
 
 * C. F. F. Karney,
