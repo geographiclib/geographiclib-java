@@ -57,7 +57,7 @@ deploy-dist:
 	rsync --delete -av $(FRSSTAGE)/distrib-Java $(FRSDEPLOY)
 
 deploy:
-	mvn -q deploy -P release
+	mvn clean deploy -P release
 
 sanitize: checktrailingspace checktabs checkblanklines
 

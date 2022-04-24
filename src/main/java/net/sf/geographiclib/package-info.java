@@ -1,7 +1,7 @@
 /**
  * <h2>Geodesic routines from GeographicLib implemented in Java</h2>
  * @author Charles F. F. Karney (charles@karney.com)
- * @version 2.0-SNAPSHOT
+ * @version 2.0
  *
  * <p>
  * The documentation for other versions is available at
@@ -24,22 +24,24 @@
  * <p>
  * Download either the source or the pre-built package as follows:
  *
- * <h4>Obtaining the source</h4>
- * The source is hosted on
- * <a href="https://github.com/geographiclib/geographiclib-java">github</a>.
- * Releases are tagged as v1.52, v2.0, etc.
- *
  * <h4>The pre-built package</h4>
- * GeographicLib-Java is available as a pre-built package on Maven Central
- * (thanks to Chris Bennight for help on this deployment).  So, if you use
+ * GeographicLib-Java is available as a
+ * <a href="https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java">
+ * pre-built package on Maven Central</a> (thanks to Chris Bennight for help on
+ * this deployment).  So, if you use
  * <a href="https://maven.apache.org/">maven</a> to build your code, you just
  * need to include the dependency <pre>{@code
  *   <dependency>
  *     <groupId>net.sf.geographiclib</groupId>
  *     <artifactId>GeographicLib-Java</artifactId>
- *     <version>2.0-SNAPSHOT</version>
+ *     <version>2.0</version>
  *   </dependency> }</pre>
  * in your {@code pom.xml}.
+ *
+ * <h4>Obtaining the source</h4>
+ * The source is hosted on
+ * <a href="https://github.com/geographiclib/geographiclib-java">github</a>.
+ * Releases are tagged as v1.52, v2.0, etc.
  *
  * <h3>Sample programs</h3>
  * <p>
@@ -58,9 +60,9 @@
  * <p>
  * Here, for example, is {@code Inverse.java} <pre>{@code
  * // Solve the inverse geodesic problem.
- *
- * // This program reads in lines with lat1, lon1, lat2, lon2 and prints
- * // out lines with azi1, azi2, s12 (for the WGS84 ellipsoid).
+ * //
+ * // This program reads in lines with lat1, lon1, lat2, lon2 and prints out
+ * // lines with azi1, azi2, s12 (for the WGS84 ellipsoid).
  *
  * import java.util.*;
  * import net.sf.geographiclib.*;
@@ -73,7 +75,7 @@
  *         lat1 = in.nextDouble(); lon1 = in.nextDouble();
  *         lat2 = in.nextDouble(); lon2 = in.nextDouble();
  *         GeodesicData g = Geodesic.WGS84.Inverse(lat1, lon1, lat2, lon2);
- *         System.out.println(g.azi1 + " " + g.azi2 + " " + g.s12);
+ *         System.out.format("%.11f %.11f %.6f%n", g.azi1, g.azi2, g.s12);
  *       }
  *     }
  *     catch (Exception e) {}
@@ -82,44 +84,24 @@
  *
  * <h3>Compiling and running a sample program</h3>
  * <p>
- * Three difference ways of compiling and running {@code Inverse.java} are
- * given.  These differ in the degree to which they utilize
- * <a href="https://maven.apache.org/">maven</a> to manage your Java code and
- * its dependencies.  (Thanks to Skip Breidbach for supplying the maven
+ * Here's how to compile and run {@code Inverse.java} using
+ * <a href="https://maven.apache.org/">maven</a> (the recommended way) and
+ * without using maven.  (Thanks to Skip Breidbach for supplying the maven
  * support.)
+ *
+ * <h4>Using maven</h4>
+ * The sample code includes a {@code pom.xml} which specifies
+ * GeographicLib-Java as a dependency which maven will download from Maven
+ * Central.  You can compile and run Inverse.java with <pre>
+ * cd inverse
+ * mvn compile
+ * echo -30 0 29.5 179.5 | mvn -q exec:java </pre>
  *
  * <h4>Without using maven</h4>
  * Compile and run as follows <pre>
  * cd inverse/src/main/java
  * javac -cp .:../../../../src/main/java Inverse.java
  * echo -30 0 29.5 179.5 | java -cp .:../../../../src/main/java Inverse </pre>
- * On Windows, change this to <pre>
- * cd inverse\src\main\java
- * javac -cp .;../../../../src/main/java Inverse.java
- * echo -30 0 29.5 179.5 | java -cp .;../../../../src/main/java Inverse </pre>
- *
- * <h4>Using maven to package GeographicLib</h4>
- * Use <a href="https://maven.apache.org/">maven</a> to create a jar file by
- * running (in the main java directory) <pre>
- * mvn package </pre>
- * (Your first run of maven may take a long time, because it needs to download
- * some additional packages to your local repository.)  Then compile and run
- * Inverse.java with <pre>
- * cd inverse/src/main/java
- * javac -cp .:../../../../target/GeographicLib-Java-2.0-SNAPSHOT.jar Inverse.java
- * echo -30 0 29.5 179.5 |
- *   java -cp .:../../../../target/GeographicLib-Java-2.0-SNAPSHOT.jar Inverse </pre>
- *
- * <h4>Using maven to build and run {@code Inverse.java}</h4>
- * The sample code includes a {@code pom.xml} which specifies
- * GeographicLib-Java as a dependency.  You can build and install this
- * dependency by running (in the main java directory) <pre>
- * mvn install </pre>
- * Alternatively, you can let maven download it from Maven Central.  You can
- * compile and run Inverse.java with <pre>
- * cd inverse
- * mvn compile
- * echo -30 0 29.5 179.5 | mvn -q exec:java </pre>
  *
  * <h3>Using the library</h3>
  * <ul>
@@ -239,7 +221,7 @@
  *      The normal range for returned longitudes and azimuths is
  *      [&minus;180&deg;, 180&deg;].
  *   <li>
- *      A separate test suite geodsigntest has been added to check this
+ *      A separate test suite signtest.SignTest has been added to check this
  *      treatment.
  * </ul>
  * <li>

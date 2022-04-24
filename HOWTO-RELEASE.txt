@@ -5,21 +5,21 @@ with -P release extra stuff is done with
 package: javadoc sources
 verify: sign
 
-Version update checks
-https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java/1.52/jar
-https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java/1.52/jar
-# Java
-#   java/pom.xml java/*/pom.xml
-#   java/src/main/java/net/sf/geographiclib/package-info.java (date +
-#   update change log)
-#   (remember to remove SNAPSHOT from version number of lib in test programs)
-# probably should deploy a SNAPSHOT version of the lib to grease the
-# wheels
+make targets
+  all
+  test
+  clean
+  sanitize
+  stage-{doc,dist}
+  deploy-{doc,dist} - deploy to sourceforge
+  deploy - deploy to Maven Central
 
-# java release -- authentication via ~/.m2/settings.xml; this gets signed too
-# (multiple ~4 times!).
-cd $TEMP/gita/geographiclib/java
-mvn clean deploy -P release
+Version update checks
+  java/pom.xml java/*/pom.xml
+  java/src/main/java/net/sf/geographiclib/package-info.java (date +
+  update change log)
+use make checkversion
+  (remember to remove SNAPSHOT from version number of lib in test programs)
 
 Maven versions
 ‎ 1.52 2021-06-22
