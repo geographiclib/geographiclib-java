@@ -1,9 +1,9 @@
-package com.github.geographiclib.signtest;
+package net.sf.geographiclib.signtest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import com.github.geographiclib.*;
+import net.sf.geographiclib.*;
 
 public class SignTest {
 

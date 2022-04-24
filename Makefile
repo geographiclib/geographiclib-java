@@ -6,8 +6,8 @@ WEBDEPLOY = $(USER),geographiclib@web.sourceforge.net:./htdocs
 FRSDEPLOY = $(USER)@frs.sourceforge.net:/home/frs/project/geographiclib
 FULLVERSION = $(shell grep /version pom.xml | tr '<>\n' / | cut -d/ -f3)
 VERSION = $(shell echo $(FULLVERSION) | sed s/-.*//)
-SOURCEDIR = src/main/java/com/github/geographiclib
-TESTDIR = src/test/java/com/github/geographiclib
+SOURCEDIR = src/main/java/net/sf/geographiclib
+TESTDIR = src/test/java/net/sf/geographiclib
 
 SOURCES= \
 $(SOURCEDIR)/Accumulator.java \
@@ -80,7 +80,7 @@ clean:
 	mvn clean
 
 reallyclean: clean
-	rm -rf $(HOME)/.m2/repository/com/github/geographiclib/GeographicLib-Java/$(FULLVERSION)
+	rm -rf $(HOME)/.m2/repository/net/sf/geographiclib/GeographicLib-Java/$(FULLVERSION)
 
 checkversion:
 	grep "<version>$(FULLVERSION)</version>" pom.xml \

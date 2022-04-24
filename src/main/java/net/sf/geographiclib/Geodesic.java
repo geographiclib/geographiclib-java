@@ -1,16 +1,16 @@
 /**
- * Implementation of the com.github.geographiclib.Geodesic class
+ * Implementation of the net.sf.geographiclib.Geodesic class
  *
  * Copyright (c) Charles Karney (2013-2022) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package com.github.geographiclib;
+package net.sf.geographiclib;
 
 /**
  * Geodesic calculations.
  * <p>
- * The shortest path between two points on a ellipsoid at (<i>lat1</i>,
+ * The shortest path between two points on an ellipsoid at (<i>lat1</i>,
  * <i>lon1</i>) and (<i>lat2</i>, <i>lon2</i>) is called the geodesic.  Its
  * length is <i>s12</i> and the geodesic from point 1 to point 2 has azimuths
  * <i>azi1</i> and <i>azi2</i> at the two end points.  (The azimuth is the
@@ -183,7 +183,7 @@ package com.github.geographiclib;
  * // out lines with lat2, lon2, azi2 (for the WGS84 ellipsoid).
  *
  * import java.util.*;
- * import com.github.geographiclib.*;
+ * import net.sf.geographiclib.*;
  * public class Direct {
  *   public static void main(String[] args) {
  *     try {
@@ -240,7 +240,7 @@ public class Geodesic {
   private double _A3x[], _C3x[], _C4x[];
 
   /**
-   * Constructor for a ellipsoid with
+   * Constructor for an ellipsoid with
    * <p>
    * @param a equatorial radius (meters).
    * @param f flattening of ellipsoid.  Setting <i>f</i> = 0 gives a sphere.
@@ -1191,13 +1191,6 @@ public class Geodesic {
    *   the sum of <i>S12</i> for each side of the polygon.
    **********************************************************************/
   public double EllipsoidArea() { return 4 * Math.PI * _c2; }
-
-  /**
-   * @deprecated An old name for {@link #EquatorialRadius()}.
-   * @return <i>a</i> the equatorial radius of the ellipsoid (meters).
-   **********************************************************************/
-  @Deprecated
-  public double MajorRadius() { return EquatorialRadius(); }
 
   /**
    * A global instantiation of Geodesic with the parameters for the WGS84

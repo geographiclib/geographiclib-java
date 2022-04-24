@@ -1,5 +1,11 @@
 # Java implementation of the geodesic routines in GeographicLib
 
+This is a library to solve geodesic problems on an ellipsoid model of
+the earth.
+
+Licensed under the MIT/X11 License; see
+[LICENSE.txt](https://geographiclib.sourceforge.io/LICENSE.txt).
+
 The algorithms are documented in
 
 * C. F. F. Karney,
@@ -8,36 +14,15 @@ The algorithms are documented in
   [Addenda](https://geographiclib.sourceforge.io/miscgeod-addenda.html).
 
 The Java package is available
-[here OLD](https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java).
-[here NEW](https://search.maven.org/artifact/com.github.geographiclib/GeographicLib-Java).
+[here](https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java).
 
 Here is the documentation on the
-[application programming interface](https://geographiclib.sourceforge.io/html/java/)
+[application programming interface](https://geographiclib.sourceforge.io/Java/doc/)
 
-You can build the example programs using, for example,
+You can build the example programs `direct`, `inverse`, or
+`planimeter`, with, for example:
 ```sh
-cd inverse/src/main/java
-javac -cp .:../../../../src/main/java Inverse.java
-echo -30 0 29.5 179.5 | java -cp .:../../../../src/main/java Inverse
-```
-
-On Windows, change this to
-```sh
-cd inverse\src\main\java
-javac -cp .;../../../../src/main/java Inverse.java
-echo -30 0 29.5 179.5 | java -cp .;../../../../src/main/java Inverse
-```
-
-Building with maven:
-```sh
-mvn install
 cd inverse
 mvn compile
 echo -30 0 29.5 179.5 | mvn -q exec:java
-```
-
-Deploy the package with
-```sh
-mvn -q package -P release
-mvn clean deploy -P release
 ```

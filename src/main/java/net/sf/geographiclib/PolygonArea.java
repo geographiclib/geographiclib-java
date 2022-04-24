@@ -1,11 +1,11 @@
 /**
- * Implementation of the com.github.geographiclib.PolygonArea class
+ * Implementation of the net.sf.geographiclib.PolygonArea class
  *
  * Copyright (c) Charles Karney (2013-2022) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package com.github.geographiclib;
+package net.sf.geographiclib;
 
 /**
  * Polygon areas.
@@ -43,7 +43,7 @@ package com.github.geographiclib;
  * // the perimeter of the polygon and its area (for the WGS84 ellipsoid).
  *
  * import java.util.*;
- * import com.github.geographiclib.*;
+ * import net.sf.geographiclib.*;
  *
  * public class Planimeter {
  *   public static void main(String[] args) {
@@ -393,11 +393,4 @@ public class PolygonArea {
    * <i>lon</i> will be in the range [&minus;180&deg;, 180&deg;].
    **********************************************************************/
   public Pair CurrentPoint() { return new Pair(_lat1, _lon1); }
-
-  /**
-   * @deprecated An old name for {@link #EquatorialRadius()}.
-   * @return <i>a</i> the equatorial radius of the ellipsoid (meters).
-   **********************************************************************/
-  @Deprecated
-  public double MajorRadius() { return EquatorialRadius(); }
 }

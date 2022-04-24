@@ -1,12 +1,12 @@
 /**
- * Implementation of the com.github.geographiclib.Gnomonic class
+ * Implementation of the net.sf.geographiclib.Gnomonic class
  *
  * Copyright (c) BMW Car IT GmbH (2014-2019) <sebastian.mattheis@bmw-carit.de>
  * and Charles Karney (2020-2022) <charles@karney.com> and licensed and
  * licensed under the MIT/X11 License. For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package com.github.geographiclib;
+package net.sf.geographiclib;
 
 /**
  * Gnomonic projection.
@@ -106,9 +106,9 @@ package com.github.geographiclib;
  *
  * <pre>
  * // Example of using the Gnomonic.java class
- * import com.github.geographiclib.Geodesic;
- * import com.github.geographiclib.Gnomonic;
- * import com.github.geographiclib.GnomonicData;
+ * import net.sf.geographiclib.Geodesic;
+ * import net.sf.geographiclib.Gnomonic;
+ * import net.sf.geographiclib.GnomonicData;
  * public class ExampleGnomonic {
  *   public static void main(String[] args) {
  *     Geodesic geod = Geodesic.WGS84;
@@ -279,11 +279,4 @@ public class Gnomonic {
    *   the value inherited from the Geodesic object used in the constructor.
    **********************************************************************/
   public double Flattening() { return _f; }
-
-  /**
-   * @deprecated An old name for {@link #EquatorialRadius()}.
-   * @return <i>a</i> the equatorial radius of the ellipsoid (meters).
-   **********************************************************************/
-  @Deprecated
-  public double MajorRadius() { return EquatorialRadius(); }
 }

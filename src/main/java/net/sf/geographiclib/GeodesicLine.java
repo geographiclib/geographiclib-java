@@ -1,11 +1,11 @@
 /**
- * Implementation of the com.github.geographiclib.GeodesicLine class
+ * Implementation of the net.sf.geographiclib.GeodesicLine class
  *
  * Copyright (c) Charles Karney (2013-2022) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package com.github.geographiclib;
+package net.sf.geographiclib;
 
 /**
  * A geodesic line.
@@ -52,7 +52,7 @@ package com.github.geographiclib;
  * Here's an example of using this class
  * <pre>
  * {@code
- * import com.github.geographiclib.*;
+ * import net.sf.geographiclib.*;
  * public class GeodesicLineTest {
  *   public static void main(String[] args) {
  *     // Print waypoints between JFK and SIN
@@ -744,11 +744,4 @@ public class GeodesicLine {
    * @return <i>a13</i>, the arc length to point 3 (degrees).
    **********************************************************************/
   public double Arc() { return GenDistance(true); }
-
-  /**
-   * @deprecated An old name for {@link #EquatorialRadius()}.
-   * @return <i>a</i> the equatorial radius of the ellipsoid (meters).
-   **********************************************************************/
-  @Deprecated
-  public double MajorRadius() { return EquatorialRadius(); }
 }
