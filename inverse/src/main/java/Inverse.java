@@ -3,7 +3,7 @@
  **********************************************************************/
 
 import java.util.*;
-import com.github.geographiclib.*;
+import net.sf.geographiclib.*;
 /**
  * Solve the inverse geodesic problem.
  *

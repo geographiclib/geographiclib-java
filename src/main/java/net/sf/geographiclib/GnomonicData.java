@@ -1,11 +1,11 @@
 /**
- * Implementation of the com.github.geographiclib.GnomonicData class
+ * Implementation of the net.sf.geographiclib.GnomonicData class
  *
  * Copyright (c) BMW Car IT GmbH (2014-2016) <sebastian.mattheis@bmw-carit.de>
  * and licensed under the MIT/X11 License. For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package com.github.geographiclib;
+package net.sf.geographiclib;
 
 /**
  * The results of gnomonic projection.

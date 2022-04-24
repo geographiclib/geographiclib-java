@@ -5,8 +5,7 @@
  *
  * <p>
  * The documentation for other versions is available at
- * <code>https://geographiclib.sourceforge.io/Java/m.n</code> for versions
- * numbers <code>m.n</code> &ge; 1.31.
+ * <code>https://geographiclib.sourceforge.io/Java/</code>.
  * <p>
  * Licensed under the
  * <a href="https://www.opensource.org/licenses/MIT">MIT/X11 License</a>; see
@@ -18,7 +17,7 @@
  * GeographicLib-Java is a Java implementation of the geodesic algorithms from
  * <a href="https://geographiclib.sourceforge.io">GeographicLib</a>.  This is a
  * self-contained library which makes it easy to do geodesic computations for
- * an ellipsoid of revolution in a Java program.  It requires Java version 1.2
+ * an ellipsoid of revolution in a Java program.  It requires Java version 1.7
  * or later.
  *
  * <h3>Downloading</h3>
@@ -26,21 +25,9 @@
  * Download either the source or the pre-built package as follows:
  *
  * <h4>Obtaining the source</h4>
- * GeographicLib-Java is part of GeographicLib which available for download at
- * <ul>
- * <li>
- *   <a href="https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-2.0-SNAPSHOT.tar.gz">
- *   GeographicLib-2.0-SNAPSHOT.tar.gz</a>
- * <li>
- *   <a href="https://sourceforge.net/projects/geographiclib/files/distrib/GeographicLib-2.0-SNAPSHOT.zip">
- *   GeographicLib-2.0-SNAPSHOT.zip</a>
- * </ul>
- * <p>
- * as either a compressed tar file (tar.gz) or a zip file.  After unpacking
- * the source, the Java library can be found in GeographicLib-2.0-SNAPSHOT/java.  (This
- * library is completely independent from the rest of GeodegraphicLib.)  The
- * library consists of the files in the src/main/java/com/github/geographiclib
- * subdirectory.
+ * The source is hosted on
+ * <a href="https://github.com/geographiclib/geographiclib-java">github</a>.
+ * Releases are tagged as v1.52, v2.0, etc.
  *
  * <h4>The pre-built package</h4>
  * GeographicLib-Java is available as a pre-built package on Maven Central
@@ -48,7 +35,7 @@
  * <a href="https://maven.apache.org/">maven</a> to build your code, you just
  * need to include the dependency <pre>{@code
  *   <dependency>
- *     <groupId>com.github.geographiclib</groupId>
+ *     <groupId>net.sf.geographiclib</groupId>
  *     <artifactId>GeographicLib-Java</artifactId>
  *     <version>2.0-SNAPSHOT</version>
  *   </dependency> }</pre>
@@ -76,7 +63,7 @@
  * // out lines with azi1, azi2, s12 (for the WGS84 ellipsoid).
  *
  * import java.util.*;
- * import com.github.geographiclib.*;
+ * import net.sf.geographiclib.*;
  * public class Inverse {
  *   public static void main(String[] args) {
  *     try {
@@ -138,7 +125,7 @@
  * <ul>
  * <li>
  *   Put <pre>
- *   import com.github.geographiclib.*</pre>
+ *   import net.sf.geographiclib.*</pre>
  *   in your source code.
  * <li>
  *   Make calls to the geodesic routines from your code.
@@ -149,26 +136,26 @@
  * The important classes are
  * <ul>
  * <li>
- *   {@link com.github.geographiclib.Geodesic}, for direct and inverse geodesic
+ *   {@link net.sf.geographiclib.Geodesic}, for direct and inverse geodesic
  *   calculations;
  * <li>
- *   {@link com.github.geographiclib.GeodesicLine}, an efficient way of
+ *   {@link net.sf.geographiclib.GeodesicLine}, an efficient way of
  *   calculating multiple points on a single geodesic;
  * <li>
- *   {@link com.github.geographiclib.GeodesicData}, the object containing the
+ *   {@link net.sf.geographiclib.GeodesicData}, the object containing the
  *   results of the geodesic calculations;
  * <li>
- *   {@link com.github.geographiclib.GeodesicMask}, the constants that let you
+ *   {@link net.sf.geographiclib.GeodesicMask}, the constants that let you
  *   specify the variables to return in
- *   {@link com.github.geographiclib.GeodesicData} and the capabilities of a
- *   {@link com.github.geographiclib.GeodesicLine};
+ *   {@link net.sf.geographiclib.GeodesicData} and the capabilities of a
+ *   {@link net.sf.geographiclib.GeodesicLine};
  * <li>
- *   {@link com.github.geographiclib.Constants}, the parameters for the WGS84
+ *   {@link net.sf.geographiclib.Constants}, the parameters for the WGS84
  *   ellipsoid;
  * <li>
- *   {@link com.github.geographiclib.PolygonArea}, a class to compute the
+ *   {@link net.sf.geographiclib.PolygonArea}, a class to compute the
  *   perimeter and area of a geodesic polygon (returned as a
- *   {@link com.github.geographiclib.PolygonResult}).
+ *   {@link net.sf.geographiclib.PolygonResult}).
  * </ul>
  * <p>
  * The documentation is generated using javadoc when
@@ -196,63 +183,12 @@
  *   <a href="https://geographiclib.sourceforge.io">
  *   The GeographicLib web site</a>.
  * <li>
- *   <a href="https://sourceforge.net/projects/geographiclib/">
- *     Main project page</a>
- * <li>
- *   <a href="https://sourceforge.net/p/geographiclib/code/ci/release/tree/">
+ *   <a href="https://github.com/geographiclib/geographiclib-java">
  *     git repository</a>
  * <li>
- *   Implementations in various languages:
- *   <ul>
- *     <li>
- *       C++ (complete library):
- *       <a href="https://geographiclib.sourceforge.io/html/">
- *         documentation</a>,
- *       <a href="https://sourceforge.net/projects/geographiclib/files/distrib">
- *         download</a>
- *     <li>
- *       C (geodesic routines):
- *       <a href="https://geographiclib.sourceforge.io/html/C/">
- *         documentation</a>, also included with recent versions of
- *       <a href="https://github.com/OSGeo/proj.4/wiki">
- *         proj.4</a>
- *     <li>
- *       Fortran (geodesic routines):
- *       <a href="https://geographiclib.sourceforge.io/html/Fortran/">
- *         documentation</a>
- *     <li>
- *       Java (geodesic routines):
- *       <a href="https://search.maven.org/artifact/com.github.geographiclib/GeographicLib-Java">
- *         Maven Central package OLD</a>,
- *       <a href="https://search.maven.org/artifact/com.github.geographiclib/GeographicLib-Java">
- *         Maven Central package OLD</a>,
- *       <a href="https://geographiclib.sourceforge.io/html/java/">
- *         documentation</a>
- *     <li>
- *       JavaScript (geodesic routines):
- *       <a href="https://www.npmjs.com/package/geographiclib">
- *         npm package</a>,
- *       <a href="https://geographiclib.sourceforge.io/html/js/">
- *         documentation</a>
- *     <li>
- *       Python (geodesic routines):
- *       <a href="https://pypi.python.org/pypi/geographiclib">
- *         PyPI package</a>,
- *       <a href="https://geographiclib.sourceforge.io/html/python/">
- *         documentation</a>
- *     <li>
- *       Matlab/Octave (geodesic and some other routines):
- *       <a href="https://www.mathworks.com/matlabcentral/fileexchange/50605">
- *         Matlab Central package</a>
- *     <li>
- *       C# (.NET wrapper for complete C++ library):
- *       <a href="https://geographiclib.sourceforge.io/html/NET/">
- *         documentation</a>.
- *   </ul>
- * <li>
- *   The section in the GeographicLib documentation on geodesics:
- *   <a href="https://geographiclib.sourceforge.io/html/geodesic.html">
- *   Geodesics on an ellipsoid of revolution</a>
+ *   The library has been implemented in a few other
+ *   <a href="https://geographiclib.sourceforge.io/doc/library.html#languages">
+ *   languages</a>
  * <li>
  *   <a href="https://geographiclib.sourceforge.io/geodesic-papers/biblio.html">
  *   A geodesic bibliography</a>
@@ -265,14 +201,52 @@
  * <h3>Change log</h3>
  * <ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/Jave/2.0">Version 2.0</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/2.0">Version 2.0</a>
  *   (released 2022-mm-dd)
  * <ul>
  * <li>
- *    XXX
+ *    This is a major reorganization with the Java library put into its own
+ *    <a href="https://github.com/geographiclib/geographiclib-java">github
+ *    repository</a>.  Despite this, there are only reasonably minor changes to
+ *    the library itself.
+ * <li>
+ *    Fix bug where the solution of the inverse geodesic problem with
+ *    &phi;<sub>1</sub> = 0 and &phi;<sub>2</sub> = nan was treated as
+ *    equatorial.
+ * <li>
+ *    More careful treatment of &plusmn;0&deg; and &plusmn;180&deg;.
+ * <ul>
+ *   <li>
+ *      These behave consistently with taking the limits
+ *   <ul>
+ *     <li>
+ *        &plusmn;0 means &plusmn;&epsilon; as &epsilon; &rarr; 0+
+ *     <li>
+ *        &plusmn;180 means &plusmn;(180 &minus; &epsilon;) as &epsilon;
+ *        &rarr; 0+
+ *   </ul>
+ *   <li>
+ *      As a consequence, azimuths of +0&deg; and +180&deg; are reckoned to
+ *      be east-going, as far as tracking the longitude with
+ *      {@link net.sf.geographiclib.GeodesicMask#LONG_UNROLL} and the area
+ *      goes, while azimuths &minus;0&deg; and &minus;180&deg; are reckoned to
+ *      be west-going.
+ *   <li>
+ *      When computing longitude differences, if &lambda;<sub>2</sub>
+ *      &minus; &lambda;<sub>1</sub> = &plusmn;180&deg; (mod 360&deg;),
+ *      then the sign is picked depending on the sign of the difference.
+ *   <li>
+ *      The normal range for returned longitudes and azimuths is
+ *      [&minus;180&deg;, 180&deg;].
+ *   <li>
+ *      A separate test suite geodsigntest has been added to check this
+ *      treatment.
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.52/java">Version 1.52</a>
+ *   The deprecated functions Geodesic.MajorRadius(), etc., have been removed.
+ * </ul>
+ * <li>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.52">Version 1.52</a>
  *   (released 2021-06-21)
  * <ul>
  * <li>
@@ -280,30 +254,30 @@
  *   lines.
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.51/java">Version 1.51</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.51">Version 1.51</a>
  *   (released 2020-11-22)
  * <ul>
  * <li>
  *   In order to reduce the amount of memory allocation and garbage collection,
  *   introduce versions of GeoMath.norm, GeoMath.sum, GeoMath.AngDiff, and
- *   GeoMath.sincosd, which take a {@link com.github.geographiclib.Pair} as a
- *   parameter instead of returning a new {@link com.github.geographiclib.Pair}.
+ *   GeoMath.sincosd, which take a {@link net.sf.geographiclib.Pair} as a
+ *   parameter instead of returning a new {@link net.sf.geographiclib.Pair}.
  *   The previous versions are deprecated.
  * <li>
  *   Geodesic.MajorRadius() is now called
- *   {@link com.github.geographiclib.Geodesic#EquatorialRadius()} and similarly for
- *   {@link com.github.geographiclib.GeodesicLine},
- *   {@link com.github.geographiclib.Gnomonic}, and
- *   {@link com.github.geographiclib.PolygonArea}.
+ *   {@link net.sf.geographiclib.Geodesic#EquatorialRadius()} and similarly for
+ *   {@link net.sf.geographiclib.GeodesicLine},
+ *   {@link net.sf.geographiclib.Gnomonic}, and
+ *   {@link net.sf.geographiclib.PolygonArea}.
  * <li>
  *   Update to Java 1.7 or later to support testing on Mac OSX.
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.50/java">Version 1.50</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.50">Version 1.50</a>
  *   (released 2019-09-24)
  * <ul>
  * <li>
- *   {@link com.github.geographiclib.PolygonArea} can now handle arbitrarily
+ *   {@link net.sf.geographiclib.PolygonArea} can now handle arbitrarily
  *   complex polygons.  In the case of self-intersecting polygons the area is
  *   accumulated "algebraically", e.g., the areas of the 2 loops in a figure-8
  *   polygon will partially cancel.
@@ -318,14 +292,14 @@
  *   &minus;0.
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.49/java">Version 1.49</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.49">Version 1.49</a>
  *   (released 2017-10-05)
  * <ul>
  * <li>
  *   Fix code formatting and add two tests.
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.48/java">Version 1.48</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.48">Version 1.48</a>
  *   (released 2017-04-09)
  * <ul>
  * <li>
@@ -333,7 +307,7 @@
  *   (&minus;180&deg;, 180&deg;] (instead of [&minus;180&deg;, 180&deg;)).
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.47/java">Version 1.47</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.47">Version 1.47</a>
  *   (released 2017-02-15)
  * <ul>
  * <li>
@@ -341,7 +315,7 @@
  *   version 1.46).
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.46/java">Version 1.46</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.46">Version 1.46</a>
  *   (released 2016-02-15)
  * <ul>
  * <li>
@@ -360,7 +334,7 @@
  *   GeoMath.AngDiff now returns a Pair.
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.45/java">Version 1.45</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.45">Version 1.45</a>
  *   (released 2015-09-30)
  * <ul>
  * <li>
@@ -368,14 +342,14 @@
  *   one of the latitudes is a NaN.
  * <li>
  *   Add implementation of the ellipsoidal
- *   {@link com.github.geographiclib.Gnomonic} (courtesy of Sebastian Mattheis).
+ *   {@link net.sf.geographiclib.Gnomonic} (courtesy of Sebastian Mattheis).
  * <li>
  *   Math.toRadians and Math.toDegrees are used instead of GeoMath.degree
  *   (which is now removed).  This requires Java 1.2 or later (released
  *   1998-12).
  * </ul>
  * <li>
- *   <a href="https://geographiclib.sourceforge.io/1.44/java">Version 1.44</a>
+ *   <a href="https://geographiclib.sourceforge.io/Java/1.44">Version 1.44</a>
  *   (released 2015-08-14)
  * <ul>
  * <li>
@@ -397,4 +371,4 @@
  * </ul>
  * </ul>
  **********************************************************************/
-package com.github.geographiclib;
+package net.sf.geographiclib;

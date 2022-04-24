@@ -1,11 +1,11 @@
 /**
- * Implementation of the com.github.geographiclib.Constants class
+ * Implementation of the net.sf.geographiclib.Constants class
  *
  * Copyright (c) Charles Karney (2013) <charles@karney.com> and licensed
  * under the MIT/X11 License.  For more information, see
  * https://geographiclib.sourceforge.io/
  **********************************************************************/
-package com.github.geographiclib;
+package net.sf.geographiclib;
 
 /**
  * Constants needed by GeographicLib.
