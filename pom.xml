@@ -22,9 +22,9 @@
   <name>Java implementation of GeographicLib</name>
   <description>
     This is a Java implementation of the geodesic algorithms from
-    GeographicLib. This is a self-contained library which makes it
-    easy to do geodesic computations for an ellipsoid of revolution in
-    a Java program. It requires Java version 1.1 or later.
+    GeographicLib. This is a self-contained library to solve geodesic
+    problems on an ellipsoid model of the earth.  It requires Java
+    version 1.7 or later.
   </description>
   <url>https://geographiclib.sourceforge.io</url>
 
@@ -34,7 +34,7 @@
       <email>charles@karney.com</email>
       <organization></organization>
       <organizationUrl>
-        https://sourceforge.net/u/karney/profile/
+        https://www.petrel.org
       </organizationUrl>
     </developer>
   </developers>
@@ -158,13 +158,13 @@
 
   <scm>
     <connection>
-      scm:git://git.code.sourceforge.net/p/geographiclib/code
+      scm:git:git@github.com:geographiclib/geographiclib-java
     </connection>
     <developerConnection>
-      scm:git:https://git.code.sourceforge.net/p/geographiclib/code
+      scm:git:https://github.com/geographiclib/geographiclib-java
     </developerConnection>
     <url>
-      https://sourceforge.net/p/geographiclib/code/ci/master/tree/
+      https://github.com/geographiclib/geographiclib-java
     </url>
   </scm>
 
