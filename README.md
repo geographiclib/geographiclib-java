@@ -26,3 +26,7 @@ cd inverse
 mvn compile
 echo -30 0 29.5 179.5 | mvn -q exec:java
 ```
+The ouput should be
+```
+154.37818274278 25.48587026077 19937782.280350
+```
