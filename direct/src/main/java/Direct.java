@@ -8,8 +8,8 @@ public class Direct {
 /**
  * Solve the direct geodesic problem.
  *
- * This program reads in lines with lat1, lon1, azi1, s12 and prints out lines
- * with lat2, lon2, azi2 (for the WGS84 ellipsoid).
+ * This program reads in lines with lat1, lon1, azi1, s12 and prints
+ * out lines with lat2, lon2, azi2 (for the WGS84 ellipsoid).
  **********************************************************************/
   public static void main(String[] args) {
     try {

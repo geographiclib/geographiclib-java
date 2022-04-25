@@ -61,8 +61,8 @@
  * Here, for example, is {@code Inverse.java} <pre>{@code
  * // Solve the inverse geodesic problem.
  * //
- * // This program reads in lines with lat1, lon1, lat2, lon2 and prints out
- * // lines with azi1, azi2, s12 (for the WGS84 ellipsoid).
+ * // This program reads in lines with lat1, lon1, lat2, lon2 and prints
+ * // out lines with azi1, azi2, s12 (for the WGS84 ellipsoid).
  *
  * import java.util.*;
  * import net.sf.geographiclib.*;
@@ -184,7 +184,7 @@
  * <ul>
  * <li>
  *   <a href="https://geographiclib.sourceforge.io/Java/2.0">Version 2.0</a>
- *   (released 2022-mm-dd)
+ *   (released 2022-04-25)
  * <ul>
  * <li>
  *    This is a major reorganization with the Java library put into its own
