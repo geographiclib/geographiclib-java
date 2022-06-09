@@ -22,6 +22,10 @@ use make checkversion
   (remember to remove SNAPSHOT from version number of lib in test programs)
   remove SNAPSHOT versions in distrib-Java
 
+Artifact shows up on
+  https://search.maven.org/artifact/net.sf.geographiclib/GeographicLib-Java
+about a day later.
+
 Maven versions
 ‎ 1.52 2021-06-22
 ‎ 1.51 2020-11-22
@@ -37,3 +41,6 @@ Maven versions
 
 First Java implementation
  1.31 2013-07-01
+
+TODO: Add documentation about areas after description of multiple
+shortest geodesics.

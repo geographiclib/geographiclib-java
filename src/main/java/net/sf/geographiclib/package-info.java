@@ -143,8 +143,8 @@
  * The documentation is generated using javadoc when
  * {@code mvn package -P release} is run (the top of the documentation tree is
  * {@code target/apidocs/index.html}).  This is also available on the web at
- * <a href="https://geographiclib.sourceforge.io/html/java/index.html">
- * https://geographiclib.sourceforge.io/html/java/index.html</a>.
+ * <a href="https://geographiclib.sourceforge.io/Java/doc/index.html">
+ * https://geographiclib.sourceforge.io/Java/doc/index.html</a>.
  *
  * <h3>External links</h3>
  * <ul>
