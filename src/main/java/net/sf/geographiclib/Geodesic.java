@@ -232,7 +232,7 @@ public class Geodesic {
   private static final double tol1_ = 200 * tol0_;
   private static final double tol2_ = Math.sqrt(tol0_);
   // Check on bisection interval
-  private static final double tolb_ = tol0_ * tol2_;
+  private static final double tolb_ = tol0_;
   private static final double xthresh_ = 1000 * tol2_;
 
   protected double _a, _f, _f1, _e2, _ep2, _b, _c2;
@@ -830,7 +830,7 @@ public class Geodesic {
         // Bracketing range
         double salp1a = tiny_, calp1a = 1, salp1b = tiny_, calp1b = -1;
         Lambda12V w = new Lambda12V();
-        for (boolean tripn = false, tripb = false; numit < maxit2_; ++numit) {
+        for (boolean tripn = false, tripb = false;; ++numit) {
           // the WGS84 test set: mean = 1.47, sd = 1.25, max = 16
           // WGS84 and random input: mean = 2.85, sd = 0.60
           double V, dV;
@@ -843,8 +843,12 @@ public class Geodesic {
           ssig2 = w.ssig2; csig2 = w.csig2;
           eps = w.eps; domg12 = w.domg12;
           dV = w.dlam12;
-          // Reversed test to allow escape with NaNs
-          if (tripb || !(Math.abs(V) >= (tripn ? 8 : 1) * tol0_)) break;
+          if (tripb ||
+              // Reversed test to allow escape with NaNs
+              !(Math.abs(V) >= (tripn ? 8 : 1) * tol0_) ||
+              // Enough bisections to get accurate result
+              numit == maxit2_)
+            break;
           // Update bracketing values
           if (V > 0 && (numit > maxit1_ || calp1/salp1 > calp1b/salp1b))
             { salp1b = salp1; calp1b = calp1; }
@@ -853,19 +857,21 @@ public class Geodesic {
           if (numit < maxit1_ && dV > 0) {
             double
               dalp1 = -V/dV;
-            double
-              sdalp1 = Math.sin(dalp1), cdalp1 = Math.cos(dalp1),
-              nsalp1 = salp1 * cdalp1 + calp1 * sdalp1;
-            if (nsalp1 > 0 && Math.abs(dalp1) < Math.PI) {
-              calp1 = calp1 * cdalp1 - salp1 * sdalp1;
-              salp1 = nsalp1;
-              GeoMath.norm(p, salp1, calp1);
-              salp1 = p.first; calp1 = p.second;
-              // In some regimes we don't get quadratic convergence because
-              // slope -> 0.  So use convergence conditions based on epsilon
-              // instead of sqrt(epsilon).
-              tripn = Math.abs(V) <= 16 * tol0_;
-              continue;
+            if (Math.abs(dalp1) < Math.PI) {
+              double
+                sdalp1 = Math.sin(dalp1), cdalp1 = Math.cos(dalp1),
+                nsalp1 = salp1 * cdalp1 + calp1 * sdalp1;
+              if (nsalp1 > 0) {
+                calp1 = calp1 * cdalp1 - salp1 * sdalp1;
+                salp1 = nsalp1;
+                GeoMath.norm(p, salp1, calp1);
+                salp1 = p.first; calp1 = p.second;
+                // In some regimes we don't get quadratic convergence because
+                // slope -> 0.  So use convergence conditions based on epsilon
+                // instead of sqrt(epsilon).
+                tripn = Math.abs(V) <= 16 * tol0_;
+                continue;
+              }
             }
           }
           // Either dV was not positive or updated value was outside legal
