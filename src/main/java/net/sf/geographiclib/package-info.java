@@ -17,7 +17,7 @@
  * GeographicLib-Java is a Java implementation of the geodesic algorithms from
  * <a href="https://geographiclib.sourceforge.io">GeographicLib</a>.  This is a
  * self-contained library which makes it easy to do geodesic computations for
- * an ellipsoid of revolution in a Java program.  It requires Java version 1.7
+ * an ellipsoid of revolution in a Java program.  It requires Java version 1.8
  * or later.
  *
  * <h3>Downloading</h3>

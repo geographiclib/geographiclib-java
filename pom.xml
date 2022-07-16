@@ -24,7 +24,7 @@
     This is a Java implementation of the geodesic algorithms from
     GeographicLib. This is a self-contained library to solve geodesic
     problems on an ellipsoid model of the earth.  It requires Java
-    version 1.7 or later.
+    version 1.8 or later.
   </description>
   <url>https://geographiclib.sourceforge.io</url>
 
@@ -41,7 +41,7 @@
 
   <properties>
     <basedir>.</basedir>
-    <java.version>1.7</java.version>
+    <java.version>1.8</java.version>
     <surefire-plugin.version>2.9</surefire-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>

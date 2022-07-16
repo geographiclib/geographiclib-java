@@ -15,7 +15,7 @@
 
   <properties>
     <basedir>.</basedir>
-    <java.version>1.7</java.version>
+    <java.version>1.8</java.version>
     <surefire-plugin.version>2.9</surefire-plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
