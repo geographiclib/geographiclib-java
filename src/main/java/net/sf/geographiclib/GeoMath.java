@@ -183,14 +183,20 @@ public class GeoMath {
   public static void sincosd(Pair p, double x) {
     // In order to minimize round-off errors, this function exactly reduces
     // the argument to the range [-45, 45] before converting it to radians.
-    double r; int q;
-    r = x % 360.0;
-    q = (int)Math.round(r / 90); // If r is NaN this returns 0
-    r -= 90 * q;
+    double d = x % 360.0, r;
+    int q = (int)Math.round(d / 90); // If r is NaN this returns 0
+    d -= 90 * q;
     // now abs(r) <= 45
-    r = Math.toRadians(r);
+    r = Math.toRadians(d);
     // Possibly could call the gnu extension sincos
     double s = Math.sin(r), c = Math.cos(r);
+    if (Math.abs(d) == 45) {
+      c = Math.sqrt(0.5);
+      s = Math.copySign(c, r);
+    } else if (Math.abs(d) == 30) {
+      c = Math.sqrt(0.75);
+      s = Math.copySign(0.5, r);
+    }
     double sinx, cosx;
     switch (q & 3) {
     case  0: sinx =  s; cosx =  c; break;
@@ -220,13 +226,20 @@ public class GeoMath {
   public static void sincosde(Pair p, double x, double t) {
     // In order to minimize round-off errors, this function exactly reduces
     // the argument to the range [-45, 45] before converting it to radians.
-    double r; int q;
-    q = (int)Math.round(x / 90); // If r is NaN this returns 0
-    r = x - 90 * q;
+    double d = x % 360.0, r;
+    int q = (int)Math.round(d / 90); // If r is NaN this returns 0
+    d -= 90 * q;
     // now abs(r) <= 45
-    r = Math.toRadians(GeoMath.AngRound(r + t));
+    r = Math.toRadians(GeoMath.AngRound(d + t));
     // Possibly could call the gnu extension sincos
     double s = Math.sin(r), c = Math.cos(r);
+    if (Math.abs(d) == 45) {
+      c = Math.sqrt(0.5);
+      s = Math.copySign(c, r);
+    } else if (Math.abs(d) == 30) {
+      c = Math.sqrt(0.75);
+      s = Math.copySign(0.5, r);
+    }
     double sinx, cosx;
     switch (q & 3) {
     case  0: sinx =  s; cosx =  c; break;

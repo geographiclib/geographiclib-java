@@ -687,6 +687,17 @@ public class GeodesicTest {
   }
 
   @Test
+  public void GeodSolve99() {
+    // Test case https://github.com/geographiclib/geographiclib-js/issues/3
+    // Problem was that output of sincosd(+/-45) was inconsistent because of
+    // directed rounding by Javascript's Math.round.  C implementation was OK.
+    GeodesicData inv = Geodesic.WGS84.Inverse(45, 0, -45, 179.572719);
+    assertEquals(inv.azi1,  90.00000028, 1e-8  );
+    assertEquals(inv.azi2,  90.00000028, 1e-8  );
+    assertEquals(inv.s12,  19987083.007, 0.5e-3);
+  }
+
+  @Test
   public void Planimeter0() {
     // Check fix for pole-encircling bug found 2011-03-16
     double pa[][] = {{89, 0}, {89, 90}, {89, 180}, {89, 270}};

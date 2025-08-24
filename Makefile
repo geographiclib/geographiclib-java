@@ -74,7 +74,7 @@ checkblanklines:
 	@echo "Looking for extra blank lines"
 	@git ls-files | \
 	while read f; do tr 'X\n' 'YX' < $$f | \
-	egrep '(^X|XXX|XX$$|[^X]$$)' > /dev/null && echo $$f; done || true
+	grep -E '(^X|XXX|XX$$|[^X]$$)' > /dev/null && echo $$f; done || true
 
 clean:
 	mvn clean
