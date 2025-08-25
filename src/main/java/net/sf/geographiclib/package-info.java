@@ -1,7 +1,7 @@
 /**
  * <h2>Geodesic routines from GeographicLib implemented in Java</h2>
  * @author Charles F. F. Karney (charles@karney.com)
- * @version 2.0
+ * @version 2.1
  *
  * <p>
  * The documentation for other versions is available at
@@ -34,14 +34,18 @@
  *   <dependency>
  *     <groupId>net.sf.geographiclib</groupId>
  *     <artifactId>GeographicLib-Java</artifactId>
- *     <version>2.0</version>
+ *     <version>2.1</version>
  *   </dependency> }</pre>
  * in your {@code pom.xml}.
  *
  * <h4>Obtaining the source</h4>
  * The source is hosted on
  * <a href="https://github.com/geographiclib/geographiclib-java">github</a>.
- * Releases are tagged as v1.52, v2.0, etc.
+
+ * Releases are tagged as v1.52, v2.0, etc.  To compile, test, and install the
+ * package do the code, use <pre>
+ * mvn compile </pre>
+ * in the top level directory.
  *
  * <h3>Sample programs</h3>
  * <p>
@@ -182,6 +186,22 @@
  *
  * <h3>Change log</h3>
  * <ul>
+ * <li>
+ *   <a href="https://geographiclib.sourceforge.io/Java/2.1">Version 2.1</a>
+ *   (released 2025-08-25)
+ * <ul>
+ * <li>
+ *    Fix bug in the solution of the inverse problem when the latitudes of the
+ *    endpoints are &plusmn;45&deg;.  (NaNs were sometimes incorrectly
+ *    returned.)
+ * <li>
+ *    Fix bug in the solution of the inverse problem for extreme prolate
+ *    ellipsoids with <i>f</i> &lt; &minus;2.  (When the endpoints were on the
+ *    same meridiann, the shortest geodesic was sometimes incorrectly given as
+ *    following the meridian.)
+ * <li>
+ *    Minor performance improvements in the inverse solution.
+ * </ul>
  * <li>
  *   <a href="https://geographiclib.sourceforge.io/Java/2.0">Version 2.0</a>
  *   (released 2022-04-25)

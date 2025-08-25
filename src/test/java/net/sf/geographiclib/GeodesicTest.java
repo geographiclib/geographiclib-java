@@ -698,6 +698,22 @@ public class GeodesicTest {
   }
 
   @Test
+  public void GeodSolve100() {
+    // Check fix for meridional failure for a strongly prolate ellipsoid.
+    // This was caused by assuming that sig12 < 1 guarantees the meridional
+    // geodesic is shortest (even though m12 < 0).  Counter example is tested
+    // here.  Bug is not present for f >= -2, b < 3*a.  For f = -2.1 the
+    // inverse calculation for 30.61 0 30.61 180 exhibits the bug.
+    Geodesic geod = new Geodesic(1e6, -3);
+    GeodesicData inv = geod.Inverse(30, 0, 30, 180);
+    // Sloppy bounds checking because series solution is inaccurate for
+    // ellipsoids this eccentric.
+    assertEquals(inv.azi1,  22.368806, 1.0);
+    assertEquals(inv.azi2, 157.631194, 1.0);
+    assertEquals(inv.s12,   1074081.6, 1e3);
+  }
+
+  @Test
   public void Planimeter0() {
     // Check fix for pole-encircling bug found 2011-03-16
     double pa[][] = {{89, 0}, {89, 90}, {89, 180}, {89, 270}};
